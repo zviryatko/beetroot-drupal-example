@@ -6,6 +6,8 @@ services:
       - './:/var/www:cached'
     env_file:
       - ./.env
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/www/vendor/bin
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.php.rule=Host(`${PROJECT_BASE_URL}`)"
