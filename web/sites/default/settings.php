@@ -777,7 +777,7 @@ $databases['default']['default'] = array (
 $settings['hash_salt'] = getenv('HASH_SALT');
 $settings['config_sync_directory'] = '../config';
 $settings['trusted_host_patterns'][] = getenv('PROJECT_BASE_URL');
-
+$settings['skip_permissions_hardening'] = TRUE;
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
