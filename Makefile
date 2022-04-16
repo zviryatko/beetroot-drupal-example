@@ -12,10 +12,10 @@ stop:
 start:
 	docker-compose start
 install: up
-	docker-compose exec php bash -c "drush site:install --db-url=mysql://$(MYSQL_USER):$(MYSQL_PASS)@$(MYSQL_HOST):$(MYSQL_PORT)/$(MYSQL_DB_NAME) -y"
+	docker-compose exec -T php bash -c "drush site:install --db-url=mysql://$(MYSQL_USER):$(MYSQL_PASS)@$(MYSQL_HOST):$(MYSQL_PORT)/$(MYSQL_DB_NAME) -y"
 	@mkdir -p "drush"
 	@echo "options:\n  uri: 'http://$(PROJECT_BASE_URL)'" > drush/drush.yml
 cli:
-	docker-compose exec php bash
+	docker-compose exec -T php bash
 test:
-	docker-compose exec php curl 0.0.0.0:80 -H "Host: $(PROJECT_BASE_URL)" --write-out %{http_code} --silent --output /dev/null
+	docker-compose exec -T php curl 0.0.0.0:80 -H "Host: $(PROJECT_BASE_URL)" --write-out %{http_code} --silent --output /dev/null
