@@ -1,5 +1,8 @@
-.PHONY: up down stop start install cli
+.PHONY: up down stop start install cli test
 include .env
+
+default: install
+
 up:
 	docker-compose up -d
 down:
@@ -14,3 +17,5 @@ install: up
 	@echo "options:\n  uri: 'http://$(PROJECT_BASE_URL)'" > drush/drush.yml
 cli:
 	docker-compose exec php bash
+test:
+	docker-compose exec php curl 0.0.0.0:80 -H "Host: $(PROJECT_BASE_URL)" --write-out %{http_code} --silent --output /dev/null
