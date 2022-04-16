@@ -12,7 +12,7 @@ stop:
 start:
 	docker-compose start
 install: up
-	docker-compose exec -T --user=root php bash -c 'chown -R www-data:www-data /var/www/vendor'
+	docker-compose exec -T --user=root php bash -c 'chown -R www-data:www-data /var/www'
 	docker-compose exec -T php composer install --no-interaction
 	docker-compose exec -T php bash -c "drush site:install --db-url=mysql://$(MYSQL_USER):$(MYSQL_PASS)@$(MYSQL_HOST):$(MYSQL_PORT)/$(MYSQL_DB_NAME) -y"
 	@mkdir -p "drush"
