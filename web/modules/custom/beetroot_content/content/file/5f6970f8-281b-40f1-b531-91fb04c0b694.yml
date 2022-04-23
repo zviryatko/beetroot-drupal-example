@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5f6970f8-281b-40f1-b531-91fb04c0b694
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: generateImage_l0UfYd.jpg
+  uri:
+    -
+      value: 'public://2022-04/generateImage_l0UfYd.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 7753
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1650693918

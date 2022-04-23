@@ -1,0 +1,16 @@
+name: beetroot_content
+type: module
+description: Provides additional functionality for the site.
+package: Custom
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - default_content
+
+default_content:
+  node:
+    - 0b1ed8a0-d586-4bc5-a0c0-da5e7e8ed46e
+  file:
+    - 5f6970f8-281b-40f1-b531-91fb04c0b694
+  taxonomy_term:
+    - c425a3f8-ea9a-4f90-8b31-a2b0c07ee388

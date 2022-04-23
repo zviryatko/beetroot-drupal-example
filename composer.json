@@ -20,20 +20,22 @@
         "drupal/core-composer-scaffold": "9.3.12",
         "drupal/core-project-message": "9.3.12",
         "drupal/core-recommended": "9.3.12",
+        "drupal/default_content": "^2.0@alpha",
         "drupal/devel": "^4.1",
         "drush/drush": "11.0.9"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true
+            "drupal/core-project-message": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "extra": {
@@ -92,5 +94,8 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/core-dev": "9.3.12"
     }
 }
