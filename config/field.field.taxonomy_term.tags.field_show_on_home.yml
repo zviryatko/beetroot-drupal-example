@@ -1,0 +1,23 @@
+uuid: 298bec6a-0f2f-4627-aa79-70fb0480540f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_show_on_home
+    - taxonomy.vocabulary.tags
+id: taxonomy_term.tags.field_show_on_home
+field_name: field_show_on_home
+entity_type: taxonomy_term
+bundle: tags
+label: 'Show on homepage'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

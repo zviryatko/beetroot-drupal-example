@@ -1,0 +1,15 @@
+uuid: bdb6ac9b-69d6-4bdc-a796-8c8d7cdc7f0f
+langcode: en
+status: true
+dependencies: {  }
+name: thin
+label: 'Thin (300x150)'
+effects:
+  513fe783-3bc0-48a0-8523-ee19723c33f8:
+    uuid: 513fe783-3bc0-48a0-8523-ee19723c33f8
+    id: image_scale
+    weight: 1
+    data:
+      width: 300
+      height: 150
+      upscale: true

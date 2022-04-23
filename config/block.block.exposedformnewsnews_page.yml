@@ -1,0 +1,28 @@
+uuid: 5361b6c0-db05-4c68-acbc-020ba786af5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - system
+    - views
+  theme:
+    - olivero
+id: exposedformnewsnews_page
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:news-news_page'
+settings:
+  id: 'views_exposed_filter_block:news-news_page'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /news

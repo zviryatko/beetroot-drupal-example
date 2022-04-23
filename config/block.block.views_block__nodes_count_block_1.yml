@@ -1,0 +1,29 @@
+uuid: 3270fb96-fda3-4a33-b90f-deacbc587759
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.nodes_count
+  module:
+    - system
+    - views
+  theme:
+    - seven
+id: views_block__nodes_count_block_1
+theme: seven
+region: content
+weight: -3
+provider: null
+plugin: 'views_block:nodes_count-block_1'
+settings:
+  id: 'views_block:nodes_count-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /admin/content
