@@ -17,11 +17,11 @@
     "require": {
         "composer/installers": "^1.9",
         "drupal/better_exposed_filters": "^5.0",
-        "drupal/core-composer-scaffold": "^9.3",
-        "drupal/core-project-message": "^9.3",
-        "drupal/core-recommended": "^9.3",
+        "drupal/core-composer-scaffold": "9.3.12",
+        "drupal/core-project-message": "9.3.12",
+        "drupal/core-recommended": "9.3.12",
         "drupal/devel": "^4.1",
-        "drush/drush": "^11.0"
+        "drush/drush": "11.0.9"
     },
     "conflict": {
         "drupal/drupal": "*"
