@@ -6,11 +6,11 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_image
     - field.storage.node.field_tags
-    - image.style.thin
     - node.type.article
+    - responsive_image.styles.banner_image
   module:
-    - image
     - node
+    - responsive_image
     - text
     - user
 id: article_list
@@ -79,10 +79,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image
+          type: responsive_image
           settings:
+            responsive_image_style: banner_image
             image_link: content
-            image_style: thin
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -467,7 +467,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<h2>Article list<h2>\r\nResults number: [view:total-rows]"
+            value: "<h2>Article list<h2>\r\nCurrent user: [current-user:display-name]\r\nResults number: [view:total-rows]"
             format: basic_html
           tokenize: false
       footer: {  }

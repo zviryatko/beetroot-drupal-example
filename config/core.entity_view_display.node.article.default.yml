@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.field_image
+    - field.field.node.article.field_private
     - field.field.node.article.field_tags
     - image.style.large
     - node.type.article
   module:
+    - file
     - image
     - text
     - user
@@ -34,6 +36,14 @@ content:
       image_style: large
     third_party_settings: {  }
     weight: -1
+    region: content
+  field_private:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 101
     region: content
   field_tags:
     type: entity_reference_label

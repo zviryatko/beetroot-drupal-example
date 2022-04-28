@@ -20,7 +20,9 @@ RUN pecl install xdebug \
           echo "xdebug.log_level=0"; \
       } > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini;
 
-RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/docker-php-ext-custom.ini
+RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/docker-php-ext-custom.ini \
+    && echo "upload_max_filesize=100M" >> /usr/local/etc/php/conf.d/docker-php-ext-custom.ini \
+    && echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/docker-php-ext-custom.ini
 
 COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
