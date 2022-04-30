@@ -1,0 +1,22 @@
+uuid: 3e8f040b-eec8-4c21-8131-36774c1e5301
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: complex_page
+label: 'Complex page'
+type: 'canonical_entities:node'
+pattern: '/landing/[node:title]'
+selection_criteria:
+  48c5bd0a-941c-4904-b225-57e83813641f:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 48c5bd0a-941c-4904-b225-57e83813641f
+    context_mapping:
+      node: node
+    bundles:
+      complex_page: complex_page
+selection_logic: and
+weight: -5
+relationships: {  }

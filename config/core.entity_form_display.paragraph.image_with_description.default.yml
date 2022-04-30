@@ -1,0 +1,50 @@
+uuid: c64c0622-18a9-4838-8f36-9b197d7ffdf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_with_description.field_description
+    - field.field.paragraph.image_with_description.field_media_image
+    - field.field.paragraph.image_with_description.field_title
+    - paragraphs.paragraphs_type.image_with_description
+  module:
+    - field_layout
+    - layout_discovery
+    - media_library
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.image_with_description.default
+targetEntityType: paragraph
+bundle: image_with_description
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

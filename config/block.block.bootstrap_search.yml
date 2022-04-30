@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - search
+    - system
   theme:
     - bootstrap
 _core:
@@ -20,4 +21,8 @@ settings:
   label_display: visible
   provider: search
   page_id: ''
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/landing/*'
