@@ -1,15 +1,15 @@
-uuid: bc298ced-c27d-4d13-93ea-825438056213
+uuid: a452f0fb-1cb8-4112-a593-91c8a864d711
 langcode: en
 status: true
 dependencies:
   theme:
-    - bartik
+    - bootstrap
 _core:
-  default_config_hash: XRdb8LpbArVA6CpuuEZxzi50JIdjsJaCCZ5o3fH0Blk
-id: bartik_local_actions
-theme: bartik
-region: content
-weight: -20
+  default_config_hash: ffxthelqQF8xcr4GTG4HlaNNsluiHftN0pujmQpW0bQ
+id: bootstrap_local_actions
+theme: bootstrap
+region: header
+weight: 20
 provider: null
 plugin: local_actions_block
 settings:
