@@ -1,0 +1,36 @@
+uuid: dc6bb631-8758-4f93-8ccc-aea80c1968d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.node_view
+  module:
+    - node
+    - panels
+id: node_view-panels_variant-0
+label: News
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 6d48faac-241f-4ca7-aaab-cdda301374bb
+  blocks: {  }
+  page_title: ''
+  layout: layout_threecol_25_50_25
+  layout_settings: {  }
+  builder: standard
+  storage_type: page_manager
+  storage_id: node_view-panels_variant-0
+page: node_view
+selection_criteria:
+  -
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+selection_logic: and
+static_context: {  }

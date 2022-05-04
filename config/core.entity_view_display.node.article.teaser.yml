@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - image.style.medium
     - node.type.article
   module:
@@ -45,3 +46,4 @@ content:
 hidden:
   body: true
   field_private: true
+  field_type: true

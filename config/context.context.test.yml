@@ -1,0 +1,13 @@
+uuid: ada7f525-e0a5-4408-a354-8e57e7116cbf
+langcode: en
+status: true
+dependencies: {  }
+label: test
+name: test
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions: {  }
+reactions: {  }
+weight: 0

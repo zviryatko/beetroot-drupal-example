@@ -7,11 +7,13 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - image.style.large
     - node.type.article
   module:
     - file
     - image
+    - options
     - text
     - user
 _core:
@@ -52,6 +54,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
     region: content
   links:
     settings: {  }

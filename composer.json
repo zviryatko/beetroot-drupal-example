@@ -19,6 +19,7 @@
         "drupal/better_exposed_filters": "^5.0",
         "drupal/bootstrap": "^3.24",
         "drupal/bootstrap_paragraphs": "^2.0@beta",
+        "drupal/context": "^4.1",
         "drupal/core-composer-scaffold": "9.3.12",
         "drupal/core-project-message": "9.3.12",
         "drupal/core-recommended": "9.3.12",
@@ -26,9 +27,13 @@
         "drupal/devel": "^4.1",
         "drupal/ds": "^3.13",
         "drupal/field_group": "^3.2",
+        "drupal/page_manager": "^4.0@beta",
+        "drupal/panels": "^4.6",
         "drupal/paragraphs": "^1.14",
         "drupal/pathauto": "^1.10",
         "drupal/token": "^1.10",
+        "drupal/webform": "^6.1",
+        "drupal/webform_extra_field": "^2.0@RC",
         "drush/drush": "11.0.9"
     },
     "conflict": {

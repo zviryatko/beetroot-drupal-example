@@ -1,0 +1,37 @@
+uuid: 56bb1eab-47a6-4c3a-bc97-16d97be8990a
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.node_view
+  module:
+    - node
+    - panels
+id: node_view-panels_variant-1
+label: Page
+weight: 0
+variant: panels_variant
+variant_settings:
+  id: panels_variant
+  label: null
+  weight: 0
+  uuid: 8e8a7caf-78df-47d4-b3d5-e1ab055fb5e7
+  blocks: {  }
+  page_title: ''
+  layout: layout_threecol_33_34_33
+  layout_settings:
+    label: ''
+  builder: standard
+  storage_type: page_manager
+  storage_id: node_view-panels_variant-1
+page: node_view
+selection_criteria:
+  -
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+selection_logic: and
+static_context: {  }

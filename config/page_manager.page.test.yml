@@ -1,0 +1,16 @@
+uuid: 8da04faf-b08d-4c9b-870d-5b3b1ec53d42
+langcode: en
+status: true
+dependencies: {  }
+id: test
+label: test
+description: ''
+use_admin_theme: false
+path: '/news/{node}'
+access_logic: and
+access_conditions: {  }
+parameters:
+  node:
+    machine_name: node
+    label: Node
+    type: 'entity:node'

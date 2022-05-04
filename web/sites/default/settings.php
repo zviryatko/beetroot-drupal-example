@@ -781,6 +781,6 @@ $settings['skip_permissions_hardening'] = TRUE;
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
-$config['system.logging']['error_level'] = 'verbose';
+$config['system.logging']['error_level'] = ERROR_REPORTING_HIDE;
 $config['system.performance']['css']['preprocess'] = FALSE;
 $config['system.performance']['js']['preprocess'] = FALSE;

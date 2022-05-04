@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - image.style.thumbnail
     - node.type.article
   module:
@@ -68,6 +69,12 @@ content:
       match_limit: 10
       size: 60
       placeholder: Tags
+    third_party_settings: {  }
+  field_type:
+    type: options_select
+    weight: 122
+    region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
