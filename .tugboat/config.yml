@@ -19,7 +19,8 @@ services:
         - ln -snf "${TUGBOAT_ROOT}/files-private" "${DOCROOT}/../files-private"
 
         # Install drupal with default content
-        - drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y
+        - composer install --optimize-autoloader --no-interaction
+        - vendor/bin/drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y
         - drush en beetroot_content -y
         - drush pmu beetroot_content default_content hal -y
 
@@ -33,5 +34,5 @@ services:
         - find "${DOCROOT}/sites/default/files" -type f -exec chmod 0664 {} \;
 
       build:
-        - composer install --optimize-autoloader
+        - composer install --optimize-autoloader --no-interaction
         - drush deploy -y
