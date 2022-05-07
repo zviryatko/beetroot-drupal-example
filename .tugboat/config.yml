@@ -1,7 +1,6 @@
 services:
-  services:
-    mysql:
-      image: tugboatqa/mysql
+  mysql:
+    image: tugboatqa/mysql
 
   php:
     image: tugboatqa/php:8-apache
