@@ -15,7 +15,7 @@ services:
 
         # Provide symlinks.
         - ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
-        - ln -snf "${TUGBOAT_ROOT}/config" "${DOCROOT}/../config"
+        #- ln -snf "${TUGBOAT_ROOT}/config" "${DOCROOT}/../config"
         - ln -snf "${TUGBOAT_ROOT}/files-private" "${DOCROOT}/../files-private"
 
         - echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/my-php.ini
