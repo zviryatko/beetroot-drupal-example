@@ -14,8 +14,11 @@ services:
         - apt-get install -y --no-install-recommends git zlib1g-dev libzip-dev zip unzip libpng-dev default-mysql-client libjpeg-dev libfreetype6-dev
         - docker-php-ext-configure gd --with-jpeg --with-freetype
         - docker-php-ext-install pdo_mysql gd opcache
+        - apt-get clean
         - a2enmod headers rewrite
         - echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/my-php.ini
+
+        - ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
 
         - composer install --optimize-autoloader --no-interaction
         - vendor/bin/drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y

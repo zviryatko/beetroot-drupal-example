@@ -14,4 +14,4 @@ jobs:
         run: wget https://dashboard.tugboat.qa/cli/linux/tugboat.tar.gz -O tugboat.tar.gz && tar -xzf tugboat.tar.gz && rm tugboat.tar.gz
 
       - name: Deploy
-        run: ./tugboat --api-token ${TUGBOAT_TOKEN} create preview main repo=${TUGBOAT_ID}
+        run: ./tugboat --api-token=$TUGBOAT_TOKEN create preview main repo=$TUGBOAT_ID
