@@ -18,11 +18,14 @@ services:
         - ln -snf "${TUGBOAT_ROOT}/config" "${DOCROOT}/../config"
         - ln -snf "${TUGBOAT_ROOT}/files-private" "${DOCROOT}/../files-private"
 
+        - export PROJECT_BASE_URL=$TUGBOAT_DEFAULT_SERVICE_URL_HOST
+        - export HASH_SALT=$TUGBOAT_REPO_ID
+
         # Install drupal with default content
         - composer install --optimize-autoloader --no-interaction
         - vendor/bin/drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y
-        - drush en beetroot_content -y
-        - drush pmu beetroot_content default_content hal -y
+        - vendor/bin/drush en beetroot_content -y
+        - vendor/bin/drush pmu beetroot_content default_content hal -y
 
       update:
         - cp "${TUGBOAT_ROOT}/.tugboat/settings.local.php" "${DOCROOT}/sites/default/"
@@ -35,4 +38,4 @@ services:
 
       build:
         - composer install --optimize-autoloader --no-interaction
-        - drush deploy -y
+        - vendor/bin/drush deploy -y
