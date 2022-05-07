@@ -17,4 +17,4 @@ jobs:
         run: make test
       - name: Deploy
         run: |
-          curl -s -H "Authorization: Bearer $TUGBOAT_TOKEN" -H "Content-Type: application/json" -X POST -d "{\"repo\":\"$TUGBOAT_ID\",\"ref\":\"main\",\"type\":\"branch\"}'  https://api.tugboat.qa/v3/previews
+          curl -s -H "Authorization: Bearer $TUGBOAT_TOKEN" -H "Content-Type: application/json" -X POST -d "{\"repo\":\"$TUGBOAT_ID\",\"ref\":\"main\",\"type\":\"branch\"}"  https://api.tugboat.qa/v3/previews
