@@ -29,13 +29,7 @@ services:
         - vendor/bin/drush pmu beetroot_content default_content hal -y
 
       update:
-        - cp "${TUGBOAT_ROOT}/.tugboat/settings.local.php" "${DOCROOT}/sites/default/"
         - composer install --optimize-autoloader
-
-        # Set file permissions such that Drupal will not complain
-        - chgrp -R www-data "${DOCROOT}/sites/default/files"
-        - find "${DOCROOT}/sites/default/files" -type d -exec chmod 2775 {} \;
-        - find "${DOCROOT}/sites/default/files" -type f -exec chmod 0664 {} \;
 
       build:
         - composer install --optimize-autoloader --no-interaction
