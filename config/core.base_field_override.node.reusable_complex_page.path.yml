@@ -1,0 +1,20 @@
+uuid: 00069f6d-0f8b-43db-b2e0-c7969f11d5c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.reusable_complex_page
+  module:
+    - path
+id: node.reusable_complex_page.path
+field_name: path
+entity_type: node
+bundle: reusable_complex_page
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

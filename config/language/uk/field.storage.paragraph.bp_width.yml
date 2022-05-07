@@ -1,0 +1,12 @@
+settings:
+  allowed_values:
+    -
+      label: Крихітний
+    -
+      label: Вузький
+    -
+      label: Середній
+    -
+      label: Широкий
+    -
+      label: 'Повний екран'

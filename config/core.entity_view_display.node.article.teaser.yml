@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_image
     - field.field.node.article.field_private
+    - field.field.node.article.field_related_news
+    - field.field.node.article.field_related_news_revision
     - field.field.node.article.field_tags
     - field.field.node.article.field_type
     - image.style.medium
@@ -46,4 +48,7 @@ content:
 hidden:
   body: true
   field_private: true
+  field_related_news: true
+  field_related_news_revision: true
   field_type: true
+  langcode: true

@@ -1,0 +1,20 @@
+uuid: 4bac2e78-5550-4658-bc6a-b21b41f8d225
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.complex_page
+  module:
+    - path
+id: node.complex_page.path
+field_name: path
+entity_type: node
+bundle: complex_page
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

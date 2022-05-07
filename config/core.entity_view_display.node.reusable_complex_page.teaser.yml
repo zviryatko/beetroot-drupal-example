@@ -1,0 +1,23 @@
+uuid: 35142fff-4ede-4201-aa24-5fd255560d66
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.reusable_complex_page.field_reusable_paragraph
+    - node.type.reusable_complex_page
+  module:
+    - user
+id: node.reusable_complex_page.teaser
+targetEntityType: node
+bundle: reusable_complex_page
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_reusable_paragraph: true
+  langcode: true

@@ -1,0 +1,18 @@
+uuid: 01d9e9ba-4999-4760-8bcb-213ebd14dc37
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.complex_page
+id: node.complex_page.title
+field_name: title
+entity_type: node
+bundle: complex_page
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

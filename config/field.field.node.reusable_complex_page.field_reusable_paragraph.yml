@@ -1,0 +1,29 @@
+uuid: 69606c45-fb11-4f28-ae6f-52194b82b9c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.node.field_reusable_paragraph
+    - node.type.reusable_complex_page
+id: node.reusable_complex_page.field_reusable_paragraph
+field_name: field_reusable_paragraph
+entity_type: node
+bundle: reusable_complex_page
+label: 'Reusable paragraph'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      basic: basic
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

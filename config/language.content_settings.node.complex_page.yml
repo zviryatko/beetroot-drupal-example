@@ -1,0 +1,18 @@
+uuid: 85095779-2794-4bcb-b528-b1f502b0bbf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.complex_page
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.complex_page
+target_entity_type_id: node
+target_bundle: complex_page
+default_langcode: site_default
+language_alterable: false

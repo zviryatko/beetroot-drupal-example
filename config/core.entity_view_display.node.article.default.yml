@@ -6,11 +6,14 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_image
     - field.field.node.article.field_private
+    - field.field.node.article.field_related_news
+    - field.field.node.article.field_related_news_revision
     - field.field.node.article.field_tags
     - field.field.node.article.field_type
     - image.style.large
     - node.type.article
   module:
+    - entity_reference_revisions
     - file
     - image
     - options
@@ -47,6 +50,23 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
+  field_related_news:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_related_news_revision:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
   field_tags:
     type: entity_reference_label
     label: above
@@ -67,4 +87,5 @@ content:
     third_party_settings: {  }
     weight: 100
     region: content
-hidden: {  }
+hidden:
+  langcode: true

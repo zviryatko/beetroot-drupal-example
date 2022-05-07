@@ -1,0 +1,29 @@
+uuid: 1f80d69a-803a-467e-b09d-75926fc7e8d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.reusable_complex_page.field_reusable_paragraph
+    - node.type.reusable_complex_page
+  module:
+    - user
+id: node.reusable_complex_page.default
+targetEntityType: node
+bundle: reusable_complex_page
+mode: default
+content:
+  field_reusable_paragraph:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

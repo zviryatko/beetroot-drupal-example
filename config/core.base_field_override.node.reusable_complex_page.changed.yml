@@ -1,0 +1,18 @@
+uuid: 8ceea13b-f77a-42a2-bfdd-89b21df62fb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.reusable_complex_page
+id: node.reusable_complex_page.changed
+field_name: changed
+entity_type: node
+bundle: reusable_complex_page
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed
