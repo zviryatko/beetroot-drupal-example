@@ -10,26 +10,27 @@ services:
       # Commands that set up the basic preview infrastructure
       init:
         # Install opcache and mod-rewrite.
-        - docker-php-ext-install opcache
+        - apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
+        - apt-get install -y --no-install-recommends git zlib1g-dev libzip-dev zip unzip libpng-dev default-mysql-client libjpeg-dev libfreetype6-dev
+        - docker-php-ext-configure gd --with-jpeg --with-freetype
+        - docker-php-ext-install pdo_mysql gd opcache
         - a2enmod headers rewrite
-
-        # Provide symlinks.
-        - ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
-        #- ln -snf "${TUGBOAT_ROOT}/config" "${DOCROOT}/../config"
-        - ln -snf "${TUGBOAT_ROOT}/files-private" "${DOCROOT}/../files-private"
-
         - echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/my-php.ini
-        - export PROJECT_BASE_URL=$TUGBOAT_DEFAULT_SERVICE_URL_HOST
-        - export HASH_SALT=$TUGBOAT_REPO_ID
 
-        # Install drupal with default content
         - composer install --optimize-autoloader --no-interaction
         - vendor/bin/drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y
         - vendor/bin/drush en beetroot_content -y
         - vendor/bin/drush pmu beetroot_content default_content hal -y
 
+      # Commands that import files, databases,  or other assets. When an
+      # existing preview is refreshed, the build workflow starts here,
+      # skipping the init step, because the results of that step will
+      # already be present.
       update:
-        - composer install --optimize-autoloader
+        - composer install --optimize-autoloader --no-interaction
+        - vendor/bin/drush site:install --existing-config --db-url=mysql://${MYSQL_USER}:${MYSQL_PASS}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME} -y
+        - vendor/bin/drush en beetroot_content -y
+        - vendor/bin/drush pmu beetroot_content default_content hal -y
 
       build:
         - composer install --optimize-autoloader --no-interaction
