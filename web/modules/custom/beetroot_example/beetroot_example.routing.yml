@@ -1,0 +1,6 @@
+example_route:
+  path: '/example'
+  defaults:
+    _controller: '\Drupal\beetroot_example\Controllers\Example::view'
+  requirements:
+    _permission: 'access beetroot example page'
