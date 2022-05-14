@@ -3,16 +3,26 @@
 namespace Drupal\beetroot_example\Controllers;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\node\NodeInterface;
 
+/**
+ * Shows example of controller for Academy.
+ */
 class Example extends ControllerBase {
 
-  public function view() {
-    $users = $this->entityTypeManager()->getStorage('user')->loadMultiple();
-    $names = [];
-    foreach ($users as $user) {
-      $names[] = $user->label();
-    }
-    return new JsonResponse(['hello' => 'world', 'users' => $names]);
+  /**
+   * Shows Node's body field.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node to show it's body field.
+   *
+   * @return array
+   *   Node view renderable array.
+   */
+  public function view(NodeInterface $node) {
+    return $this->entityTypeManager()
+      ->getViewBuilder($node->getEntityTypeId())
+      ->viewField($node->get('body'), 'teaser');
   }
+
 }

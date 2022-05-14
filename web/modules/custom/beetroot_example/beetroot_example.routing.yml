@@ -1,5 +1,5 @@
 example_route:
-  path: '/example'
+  path: '/example/{node}'
   defaults:
     _controller: '\Drupal\beetroot_example\Controllers\Example::view'
   requirements:
