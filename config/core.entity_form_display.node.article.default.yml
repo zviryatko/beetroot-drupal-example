@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_flag
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_related_news
     - field.field.node.article.field_related_news_revision
     - field.field.node.article.field_tags
+    - field.field.node.article.field_test
     - field.field.node.article.field_type
     - image.style.thumbnail
     - node.type.article
@@ -47,6 +49,13 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_flag:
+    type: boolean_checkbox
+    weight: 125
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_image:
     type: image_image
@@ -92,6 +101,14 @@ content:
       match_limit: 10
       size: 60
       placeholder: Tags
+    third_party_settings: {  }
+  field_test:
+    type: string_textfield
+    weight: 126
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_type:
     type: options_select

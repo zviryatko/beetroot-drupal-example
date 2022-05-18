@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_flag
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_related_news
     - field.field.node.article.field_related_news_revision
     - field.field.node.article.field_tags
+    - field.field.node.article.field_test
     - field.field.node.article.field_type
     - image.style.large
     - node.type.article
@@ -32,6 +34,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_flag:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 105
     region: content
   field_image:
     type: image
@@ -74,6 +86,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_test:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 106
     region: content
   field_type:
     type: list_default

@@ -5,7 +5,6 @@ dependencies:
   config:
     - filter.format.restricted_html
   module:
-    - beetroot_example
     - comment
     - contact
     - filter
@@ -18,7 +17,6 @@ label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access beetroot example page'
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'

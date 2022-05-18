@@ -1,0 +1,23 @@
+uuid: c2e0caf2-21a6-4343-ac7c-372cb187fc56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_flag
+    - node.type.article
+id: node.article.field_flag
+field_name: field_flag
+entity_type: node
+bundle: article
+label: Flag
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

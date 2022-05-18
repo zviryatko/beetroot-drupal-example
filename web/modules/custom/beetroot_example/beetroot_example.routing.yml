@@ -1,6 +1,27 @@
 example_route:
-  path: '/example/{node}'
+  path: '/example'
   defaults:
     _controller: '\Drupal\beetroot_example\Controllers\Example::view'
+  requirements:
+    _permission: 'access beetroot example page'
+
+example_route_with_form:
+  path: '/example/form'
+  defaults:
+    _controller: '\Drupal\beetroot_example\Controllers\Example::form'
+  requirements:
+    _permission: 'access beetroot example page'
+
+example_settings:
+  path: '/admin/config/example'
+  defaults:
+    _form: '\Drupal\beetroot_example\Forms\BeetrootExampleSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+example_route_with_form_autocomplete:
+  path: '/form/example_autocomplete'
+  defaults:
+    _controller: '\Drupal\beetroot_example\Controllers\Example::autocomplete'
   requirements:
     _permission: 'access beetroot example page'

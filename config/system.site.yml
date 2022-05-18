@@ -3,7 +3,7 @@ _core:
 langcode: en
 uuid: d5532728-7b1b-48f5-8b8b-2759218f88d7
 name: MySite
-mail: admin@example.com
+mail: admin+123@example.com
 slogan: ''
 page:
   403: ''

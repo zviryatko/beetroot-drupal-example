@@ -5,16 +5,19 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
+    - field.field.node.article.field_flag
     - field.field.node.article.field_image
     - field.field.node.article.field_private
     - field.field.node.article.field_related_news
     - field.field.node.article.field_related_news_revision
     - field.field.node.article.field_tags
+    - field.field.node.article.field_test
     - field.field.node.article.field_type
     - image.style.medium
     - node.type.article
   module:
     - image
+    - text
     - user
 _core:
   default_config_hash: 0ur5-yZyR8pJ3lugC_Micbr6V_tpMWz-yHFhtuLcZo8
@@ -23,6 +26,13 @@ targetEntityType: node
 bundle: article
 mode: teaser
 content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_image:
     type: image
     label: hidden
@@ -46,9 +56,10 @@ content:
     weight: 2
     region: content
 hidden:
-  body: true
+  field_flag: true
   field_private: true
   field_related_news: true
   field_related_news_revision: true
+  field_test: true
   field_type: true
   langcode: true
