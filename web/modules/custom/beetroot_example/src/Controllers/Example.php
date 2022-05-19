@@ -5,6 +5,7 @@ namespace Drupal\beetroot_example\Controllers;
 use Drupal\beetroot_example\Forms\ExampleForm;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormState;
+use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -22,10 +23,36 @@ class Example extends ControllerBase {
    *   Node view renderable array.
    */
   public function view() {
-    $config = \Drupal::config('beetroot_example.settings');
-    return [
-      '#markup' => $config->get('important_text'),
-    ];
+    $nodes = Node::loadMultiple();
+    $output = [];
+    $i = 0;
+    foreach ($nodes as $node) {
+      $i++;
+      $links = [];
+      if ($node->hasField('field_related_news')) {
+        /** @var \Drupal\node\NodeInterface[] $related */
+        $related = $node->get('field_related_news')->referencedEntities();
+        foreach ($related as $item) {
+          $links[] = [
+            '#theme' => 'beetroot_example_news_link',
+            '#url' => $item->toUrl('canonical')->toString(),
+            '#title' => $item->label(),
+          ];
+        }
+      }
+      $theme = 'beetroot_example_news';
+      if (count($nodes) == $i) {
+        $theme = 'beetroot_example_news__last';
+      }
+      $output[] = [
+        '#theme' => $theme,
+        '#title' => $node->label(),
+        '#content' => $node->get('body')->view(['label' => 'hidden']),
+        '#links' => $links,
+        '#type' => $node->bundle(),
+      ];
+    }
+    return $output;
   }
 
   public function form() {

@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function beetroot_example_theme_theme_suggestions_beetroot_example_news_alter(
+  array &$suggestions,
+  array $variables
+) {
+  $isMoreThen10Chars = strlen($variables['title']) > 10;
+  if ($isMoreThen10Chars) {
+    $suggestions[] = 'beetroot_example_news__long_title';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function beetroot_example_theme_theme_suggestions_node_alter(
+  array &$suggestions,
+  array $variables
+) {
+  $node = $variables['elements']['#node'];
+  $suggestions[] = 'node__' . Html::cleanCssIdentifier($node->get('field_type')->value);
+}

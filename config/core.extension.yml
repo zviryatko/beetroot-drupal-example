@@ -75,4 +75,5 @@ module:
 theme:
   seven: 0
   bootstrap: 0
+  beetroot_example_theme: 0
 profile: minimal

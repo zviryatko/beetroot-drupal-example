@@ -1,0 +1,22 @@
+uuid: 0fac47ab-e8a7-471c-af91-eb0c529df506
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - beetroot_example_theme
+_core:
+  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
+id: beetroot_example_theme_content
+theme: beetroot_example_theme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

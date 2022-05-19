@@ -1,0 +1,28 @@
+uuid: 8c61465f-bddd-4531-bd54-6b12f397b384
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - system
+    - views
+  theme:
+    - beetroot_example_theme
+id: beetroot_example_theme_exposedformnewsnews_page
+theme: beetroot_example_theme
+region: sidebar_second
+weight: -5
+provider: null
+plugin: 'views_exposed_filter_block:news-news_page'
+settings:
+  id: 'views_exposed_filter_block:news-news_page'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /news

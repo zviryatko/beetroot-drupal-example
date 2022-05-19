@@ -1,0 +1,22 @@
+uuid: a80842b4-5a11-45fb-98b0-1409d7a487a8
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - beetroot_example_theme
+_core:
+  default_config_hash: wDR9JKEATSWldBjw8du8s3G2zjEYeQf88nlld11hMLo
+id: beetroot_example_theme_breadcrumbs
+theme: beetroot_example_theme
+region: header
+weight: -100
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

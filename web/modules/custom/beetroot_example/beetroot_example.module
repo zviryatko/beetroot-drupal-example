@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function beetroot_example_theme($existing, $type, $theme, $path) {
+  return [
+    'beetroot_example_news' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+        'links' => NULL,
+        'type' => NULL,
+      ],
+    ],
+    'beetroot_example_news_link' => [
+      'variables' => [
+        'url' => NULL,
+        'title' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function beetroot_example_theme_suggestions_beetroot_example_news(array $variables) {
+  $suggestions = [];
+  $suggestions[] = 'beetroot_example_news__' . $variables['type'];
+  return $suggestions;
+}

@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+<div>
+  {{ content }}
+</div>
+{% if links is not empty %}
+  <div>
+    {% for link in links %}
+      <p>{{ link }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
