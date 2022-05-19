@@ -30,3 +30,11 @@ function beetroot_example_theme_suggestions_beetroot_example_news(array $variabl
   $suggestions[] = 'beetroot_example_news__' . $variables['type'];
   return $suggestions;
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function beetroot_example_preprocess_beetroot_example_news(&$variables) {
+  $variables['#attached']['library'][] = 'beetroot_example/custom';
+  $variables['#attached']['drupalSettings']['foo'] = $variables['title'];
+}

@@ -1,7 +1,14 @@
-<h2>{{ title }}</h2>
-<p>
-  {{ content }}
-</p>
-{% for link in links %}
-  <p>{{ link }}</p>
-{% endfor %}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  <h2{{ title_attributes }}>
+    {{ title }}
+  </h2>
+  {{ title_suffix }}
+
+  <div{{ content_attributes }}>
+    {{ content }}
+  </div>
+  {% for link in links %}
+    <p>{{ link }}</p>
+  {% endfor %}
+</div>
