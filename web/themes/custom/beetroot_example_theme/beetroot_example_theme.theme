@@ -23,7 +23,9 @@ function beetroot_example_theme_theme_suggestions_node_alter(
   array $variables
 ) {
   $node = $variables['elements']['#node'];
-  $suggestions[] = 'node__' . Html::cleanCssIdentifier($node->get('field_type')->value);
+  if ($node->hasField('field_type')) {
+    $suggestions[] = 'node__' . Html::cleanCssIdentifier($node->get('field_type')->value);
+  }
 }
 
 /**

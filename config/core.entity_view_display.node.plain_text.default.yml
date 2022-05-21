@@ -1,0 +1,28 @@
+uuid: 420f6d8c-786f-427b-89e9-c1296f9bdfdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.plain_text.field_plain_text
+    - node.type.plain_text
+  module:
+    - user
+id: node.plain_text.default
+targetEntityType: node
+bundle: plain_text
+mode: default
+content:
+  field_plain_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

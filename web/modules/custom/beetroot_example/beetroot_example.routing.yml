@@ -1,5 +1,5 @@
 example_route:
-  path: '/example'
+  path: '/example/{node}'
   defaults:
     _controller: '\Drupal\beetroot_example\Controllers\Example::view'
   requirements:
@@ -25,3 +25,11 @@ example_route_with_form_autocomplete:
     _controller: '\Drupal\beetroot_example\Controllers\Example::autocomplete'
   requirements:
     _permission: 'access beetroot example page'
+
+beetroot_example.text_cleanup_settings:
+  path: '/admin/config/system/text-cleanup-settings'
+  defaults:
+    _title: 'Text cleanup settings'
+    _form: 'Drupal\beetroot_example\Form\TextCleanupSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

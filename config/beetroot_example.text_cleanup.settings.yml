@@ -1,0 +1,4 @@
+plugins:
+  uc_first: uc_first
+  add_dots: add_dots
+  remove_bad_words: 0

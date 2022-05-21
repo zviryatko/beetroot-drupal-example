@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+
 /**
  * Implements hook_theme().
  */
@@ -37,4 +40,25 @@ function beetroot_example_theme_suggestions_beetroot_example_news(array $variabl
 function beetroot_example_preprocess_beetroot_example_news(&$variables) {
   $variables['#attached']['library'][] = 'beetroot_example/custom';
   $variables['#attached']['drupalSettings']['foo'] = $variables['title'];
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function beetroot_example_entity_presave(EntityInterface $entity) {
+  if (!$entity instanceof NodeInterface
+    || $entity->bundle() !== 'plain_text'
+    || !$entity->hasField('field_plain_text')
+    || $entity->get('field_plain_text')->isEmpty()
+  ) {
+    return;
+  }
+  $value = $entity->get('field_plain_text')->value;
+  /** @var \Drupal\beetroot_example\Services\TextCleanupService $textCleanup */
+  $textCleanup = \Drupal::service('beetroot_example_text_cleanup');
+  $entity->set('field_plain_text', $textCleanup->cleanUp($value));
+}
+
+function beetroot_example_text_cleanup_info_alter(&$definitions) {
+  xdebug_break();
 }

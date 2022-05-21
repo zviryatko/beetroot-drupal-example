@@ -15,10 +15,10 @@ dependencies:
     - image.style.large
     - node.type.article
   module:
+    - beetroot_example
     - entity_reference_revisions
     - file
     - image
-    - options
     - text
     - user
 _core:
@@ -96,7 +96,7 @@ content:
     weight: 106
     region: content
   field_type:
-    type: list_default
+    type: test_list
     label: above
     settings: {  }
     third_party_settings: {  }

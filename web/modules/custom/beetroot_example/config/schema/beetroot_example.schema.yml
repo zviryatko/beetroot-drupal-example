@@ -11,3 +11,12 @@ beetroot_example.settings:
     important_text:
       type: string
       label: 'Some text'
+
+# Schema for the configuration files of the Beetroot Example module.
+beetroot_example.text_cleanup.settings:
+  type: config_object
+  label: 'Beetroot Example settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

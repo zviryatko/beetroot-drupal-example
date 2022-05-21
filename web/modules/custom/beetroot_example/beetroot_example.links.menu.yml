@@ -2,3 +2,9 @@ example_page:
   title: 'Example'
   route_name: 'example_route'
   menu_name: main
+
+beetroot_example.text_cleanup_settings:
+  title: Text cleanup settings
+  parent: system.admin_config_system
+  route_name: beetroot_example.text_cleanup_settings
+  weight: 10

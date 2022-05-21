@@ -1,0 +1,18 @@
+uuid: 97f91887-1f2d-4e28-af6d-d12b1cc0b3a5
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Plain text'
+type: plain_text
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true
