@@ -5,6 +5,9 @@ namespace Drupal\beetroot_example\Forms;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Provides settings form for Beetroot example module.
+ */
 class BeetrootExampleSettingsForm extends ConfigFormBase {
 
   /**
@@ -15,7 +18,7 @@ class BeetrootExampleSettingsForm extends ConfigFormBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
     return ['beetroot_example.settings'];

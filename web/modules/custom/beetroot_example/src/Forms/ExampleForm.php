@@ -13,14 +13,14 @@ use Drupal\node\Entity\Node;
 class ExampleForm extends FormBase {
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   public function getFormId() {
     return 'beetroot_example_form';
   }
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#attributes']['id'] = 'example-form';
@@ -61,7 +61,6 @@ class ExampleForm extends FormBase {
       '#default_value' => (new Random())->word(10),
     ];
 
-
     $form['actions'] = [
       '#type' => 'actions',
     ];
@@ -101,7 +100,6 @@ class ExampleForm extends FormBase {
     return $form;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -109,12 +107,13 @@ class ExampleForm extends FormBase {
     // Validation is optional.
     $text = $form_state->getValue('text');
     if (strlen($text) < 100) {
-      $form_state->setErrorByName('text', $this->t('Text must be more than 100 chars.'));
+      $form_state->setErrorByName('text',
+        $this->t('Text must be more than 100 chars.'));
     }
   }
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $node = Node::create([
@@ -127,13 +126,30 @@ class ExampleForm extends FormBase {
     \Drupal::messenger()->addStatus('Node added.');
   }
 
+  /**
+   * Ajax submit handler for next step.
+   *
+   * @param array $form
+   *   Form build array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   */
   public function submitNext(array &$form, FormStateInterface $form_state) {
     $form_state->set('next_page', TRUE);
     $form_state->setRebuild();
   }
 
+  /**
+   * Ajax submit handler for prev step.
+   *
+   * @param array $form
+   *   Form build array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   */
   public function submitPrev(array &$form, FormStateInterface $form_state) {
     $form_state->set('next_page', FALSE);
     $form_state->setRebuild();
   }
+
 }

@@ -7,6 +7,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormState;
 use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Shows example of controller for Academy.
@@ -15,9 +16,6 @@ class Example extends ControllerBase {
 
   /**
    * Shows Node's body field.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   The node to show it's body field.
    *
    * @return array
    *   Node view renderable array.
@@ -55,13 +53,28 @@ class Example extends ControllerBase {
     return $output;
   }
 
+  /**
+   * Provides example form.
+   *
+   * @return array
+   *   Form build.
+   */
   public function form() {
     $form_state = new FormState();
     $form = \Drupal::formBuilder()->buildForm(ExampleForm::class, $form_state);
     return $form;
   }
 
-  public function autocomplete(\Symfony\Component\HttpFoundation\Request $request) {
+  /**
+   * Provides autocomplete for nodes.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
+   */
+  public function autocomplete(Request $request) {
     $q = $request->query->get('q');
     $storage = $this->entityTypeManager()->getStorage('node');
     $ids = $storage->getQuery()
@@ -76,6 +89,8 @@ class Example extends ControllerBase {
     foreach ($nodes as $node) {
       $results[] = $node->label() . ' (' . $node->id() . ')';
     }
+
     return new JsonResponse($results);
   }
+
 }
