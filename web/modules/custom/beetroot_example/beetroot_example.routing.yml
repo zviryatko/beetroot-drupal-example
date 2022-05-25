@@ -33,3 +33,35 @@ beetroot_example.text_cleanup_settings:
     _form: 'Drupal\beetroot_example\Form\TextCleanupSettingsForm'
   requirements:
     _permission: 'administer site configuration'
+
+entity.beetroot_example.collection:
+  path: '/admin/structure/beetroot-example'
+  defaults:
+    _entity_list: 'beetroot_example'
+    _title: 'Beetroot Example configuration'
+  requirements:
+    _permission: 'administer beetroot_example'
+
+entity.beetroot_example.add_form:
+  path: '/admin/structure/beetroot_example/add'
+  defaults:
+    _entity_form: 'beetroot_example.add'
+    _title: 'Add a beetroot example'
+  requirements:
+    _permission: 'administer beetroot_example'
+
+entity.beetroot_example.edit_form:
+  path: '/admin/structure/beetroot-example/{beetroot_example}'
+  defaults:
+    _entity_form: 'beetroot_example.edit'
+    _title: 'Edit a beetroot example'
+  requirements:
+    _permission: 'administer beetroot_example'
+
+entity.beetroot_example.delete_form:
+  path: '/admin/structure/beetroot-example/{beetroot_example}/delete'
+  defaults:
+    _entity_form: 'beetroot_example.delete'
+    _title: 'Delete a beetroot example'
+  requirements:
+    _permission: 'administer beetroot_example'

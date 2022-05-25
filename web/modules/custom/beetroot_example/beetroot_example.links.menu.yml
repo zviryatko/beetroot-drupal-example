@@ -8,3 +8,9 @@ beetroot_example.text_cleanup_settings:
   parent: system.admin_config_system
   route_name: beetroot_example.text_cleanup_settings
   weight: 10
+
+entity.beetroot_example.overview:
+  title: Beetroot Examples
+  parent: system.admin_structure
+  description: 'List of beetroot examples to extend site functionality.'
+  route_name: entity.beetroot_example.collection

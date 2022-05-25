@@ -20,3 +20,23 @@ beetroot_example.text_cleanup.settings:
     example:
       type: string
       label: 'Example'
+
+beetroot_example.beetroot_example.*:
+  type: config_entity
+  label: Beetroot Example
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    type:
+      type: string
+      label: Type
+    plugins:
+      type: sequence
+      label: 'Plugins'
+      sequence:
+        type: string
+        label: 'Plugin'

@@ -1,0 +1,5 @@
+entity.beetroot_example.add_form:
+  route_name: 'entity.beetroot_example.add_form'
+  title: 'Add beetroot example'
+  appears_on:
+    - entity.beetroot_example.collection
