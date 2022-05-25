@@ -3,12 +3,13 @@
 namespace Drupal\beetroot_example\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Block\Annotation\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
+ * Provides example of block plugin.
+ *
  * @Block(
  *   id = "example_block",
  *   admin_label = "Example block",
@@ -47,13 +48,17 @@ class ExampleBlock extends BlockBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function build() {
     return ['#markup' => $this->configuration['some_config']];
   }
 
+  /**
+   * {@inheritDoc}
+   */
   protected function blockAccess(AccountInterface $account) {
     return AccessResult::allowedIfHasPermission($account, 'view custom block');
   }
+
 }

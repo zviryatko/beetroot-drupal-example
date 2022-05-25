@@ -2,11 +2,12 @@
 
 namespace Drupal\beetroot_example\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\Annotation\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 
 /**
+ * An example of field formatter.
+ *
  * @FieldFormatter(
  *   id = "test_list",
  *   label = @Translation("Test List"),
@@ -19,6 +20,9 @@ use Drupal\Core\Field\FormatterBase;
  */
 class TestListFormatter extends FormatterBase {
 
+  /**
+   * {@inheritDoc}
+   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $output = [];
     foreach ($items as $item) {

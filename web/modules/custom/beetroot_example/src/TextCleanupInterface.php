@@ -25,4 +25,5 @@ interface TextCleanupInterface {
    *   Resulted cleaned up text.
    */
   public function cleanUp(string $text): string;
+
 }
