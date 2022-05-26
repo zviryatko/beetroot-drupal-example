@@ -3,3 +3,15 @@ entity.beetroot_example.add_form:
   title: 'Add beetroot example'
   appears_on:
     - entity.beetroot_example.collection
+
+example_content.type_add:
+  title: 'Add example content type'
+  route_name: entity.example_content_type.add_form
+  appears_on:
+    - entity.example_content_type.collection
+
+example_content.add_page:
+  title: 'Add example content'
+  route_name: entity.example_content.add_page
+  appears_on:
+    - entity.example_content.collection

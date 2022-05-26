@@ -4,3 +4,16 @@ access beetroot example page:
 
 administer beetroot_example:
   title: 'Administer beetroot example'
+
+administer example content types:
+  title: 'Administer example content types'
+  description: 'Maintain the types of example content entity.'
+  restrict access: true
+delete example content:
+  title: Delete example content
+create example content:
+  title: Create example content
+view example content:
+  title: View example content
+edit example content:
+  title: Edit example content

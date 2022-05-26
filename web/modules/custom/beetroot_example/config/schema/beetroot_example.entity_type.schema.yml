@@ -1,0 +1,12 @@
+beetroot_example.example_content_type.*:
+  type: config_entity
+  label: 'Example Content type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string

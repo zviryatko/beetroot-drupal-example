@@ -2,6 +2,9 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Render\Element;
+use Drupal\beetroot_example\Entity\ExampleContent;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_theme().
@@ -21,6 +24,9 @@ function beetroot_example_theme($existing, $type, $theme, $path) {
         'url' => NULL,
         'title' => NULL,
       ],
+    ],
+    'example_content' => [
+      'render element' => 'elements',
     ],
   ];
 }
@@ -52,4 +58,75 @@ function beetroot_example_entity_presave(EntityInterface $entity) {
   /** @var \Drupal\beetroot_example\Services\TextCleanupService $textCleanup */
   $textCleanup = \Drupal::service('beetroot_example_text_cleanup');
   $textCleanup->cleanUpEntity($entity);
+}
+
+/**
+ * Prepares variables for example content templates.
+ *
+ * Default template: example-content.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the example content information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_example_content(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function beetroot_example_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish example contents.
+      $storage = \Drupal::entityTypeManager()->getStorage('example_content');
+      $example_content_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($example_content_ids) as $example_content) {
+        $example_content->set('status', FALSE);
+        $example_content->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize example contents.
+      $storage = \Drupal::entityTypeManager()->getStorage('example_content');
+      $example_content_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($example_content_ids) as $example_content) {
+        $example_content->setOwnerId(0);
+        $example_content->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function beetroot_example_user_predelete(UserInterface $account) {
+  // Delete example contents.
+  $storage = \Drupal::entityTypeManager()->getStorage('example_content');
+  $example_content_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $example_contents = $storage->loadMultiple($example_content_ids);
+  $storage->delete($example_contents);
+  // Delete old revisions.
+  $example_content_ids = $storage->getQuery()
+    ->allRevisions()
+    ->condition('uid', $account->id())
+    ->execute();
+  foreach (array_keys($example_content_ids) as $revision_id) {
+    $storage->deleteRevision($revision_id);
+  }
 }

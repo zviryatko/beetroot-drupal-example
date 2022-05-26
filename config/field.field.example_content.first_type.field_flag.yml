@@ -1,0 +1,23 @@
+uuid: 3314b144-d501-4d68-8f47-0e93ad57c0d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - beetroot_example.example_content_type.first_type
+    - field.storage.example_content.field_flag
+id: example_content.first_type.field_flag
+field_name: field_flag
+entity_type: example_content
+bundle: first_type
+label: Flag
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

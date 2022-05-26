@@ -14,3 +14,9 @@ entity.beetroot_example.overview:
   parent: system.admin_structure
   description: 'List of beetroot examples to extend site functionality.'
   route_name: entity.beetroot_example.collection
+
+entity.example_content_type.collection:
+  title: 'Example Content types'
+  description: 'Manage and CRUD actions on Example Content type.'
+  parent: system.admin_structure
+  route_name: entity.example_content_type.collection

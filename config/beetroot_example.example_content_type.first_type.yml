@@ -1,0 +1,6 @@
+uuid: e7679093-dde0-44e7-8d51-d57c6b630467
+langcode: en
+status: true
+dependencies: {  }
+id: first_type
+label: 'First type'
