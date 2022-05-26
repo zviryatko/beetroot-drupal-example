@@ -130,3 +130,12 @@ function beetroot_example_user_predelete(UserInterface $account) {
     $storage->deleteRevision($revision_id);
   }
 }
+
+/**
+ * Implements hook_entity_insert().
+ */
+function beetroot_example_entity_insert(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity instanceof NodeInterface) {
+    \Drupal::queue('admin_notify_worker')->createItem($entity->id());
+  }
+}

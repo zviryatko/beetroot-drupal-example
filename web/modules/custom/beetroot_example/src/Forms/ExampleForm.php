@@ -60,6 +60,12 @@ class ExampleForm extends FormBase {
       '#title' => $this->t('Name 2'),
       '#default_value' => (new Random())->word(10),
     ];
+    $form['group2']['number'] = [
+      '#title' => $this->t('Number'),
+      '#type' => 'number',
+      '#min' => 1,
+      '#max' => 9999,
+    ];
 
     $form['actions'] = [
       '#type' => 'actions',
@@ -116,13 +122,27 @@ class ExampleForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $node = Node::create([
+    $number = $form_state->getValue('number');
+    $params = [
       'type' => 'article',
       'title' => $form_state->getValue('name'),
       'body' => $form_state->getValue('text'),
+    ];
+    $operations = [];
+    foreach (range(1, $number) as $i) {
+      $arg1 = $params;
+      $arg1['title'] .= ' - ' . $i;
+      $operations[] = ['\Drupal\beetroot_example\Forms\ExampleForm::createNode', [$arg1]];
+    }
+    batch_set([
+      'title' => $this->t('Node creation'),
+      'operations' => $operations,
     ]);
+  }
+
+  public static function createNode(array $params) {
+    $node = Node::create($params);
     $node->save();
-    $form_state->setRedirect('entity.node.canonical', ['node' => $node->id()]);
     \Drupal::messenger()->addStatus('Node added.');
   }
 
