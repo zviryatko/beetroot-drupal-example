@@ -1,0 +1,60 @@
+<?php
+
+use Drupal\beetroot_example\Entity\ExampleContent;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+
+/**
+ * Provides About us page.
+ */
+function beetroot_example_update_9000(&$sandbox) {
+  \Drupal\node\Entity\Node::create([
+    'type' => 'page',
+    'title' => 'About us',
+    'status' => 1,
+  ])->save();
+}
+
+/**
+ * Provides Products page.
+ */
+function beetroot_example_update_9001(&$sandbox) {
+  \Drupal\node\Entity\Node::create([
+    'type' => 'page',
+    'title' => 'Products',
+    'status' => 1,
+  ])->save();
+  \Drupal::messenger()->addMessage('Added Products page.');
+}
+
+/**
+ * Add flag field to ExampleContent entity.
+ */
+function beetroot_example_update_9002(&$sandbox) {
+  $storage_definition = BaseFieldDefinition::create('boolean')
+    ->setRevisionable(TRUE)
+    ->setLabel(t('Flag'))
+    ->setDefaultValue(TRUE)
+    ->setSetting('on_label', 'Yes');
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('flag', 'example_content', 'beetroot_example', $storage_definition);
+}
+
+/**
+ * Set default value for flag field.
+ */
+function beetroot_example_update_9003(&$sandbox) {
+  if (!isset($sandbox['ids'])) {
+    $sandbox['ids'] = \Drupal::entityQuery('example_content')->execute();
+  }
+  if (empty($sandbox['ids'])) {
+    $sandbox['#finished'] = 1;
+    return t('All items updated');
+  }
+  $id = array_shift($sandbox['ids']);
+  $entity = ExampleContent::load($id);
+  $entity->set('flag', TRUE);
+  $entity->save();
+  $sandbox['#finished'] = 0;
+  return t('@name updated.', ['@name' => $entity->label()]);
+}

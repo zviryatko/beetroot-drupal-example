@@ -194,6 +194,28 @@ class ExampleContent extends RevisionableContentEntityBase implements ExampleCon
       ->setTranslatable(TRUE)
       ->setDescription(t('The time that the example content was last edited.'));
 
+    $fields['flag'] = BaseFieldDefinition::create('boolean')
+      ->setRevisionable(TRUE)
+      ->setLabel(t('Flag'))
+      ->setDefaultValue(TRUE)
+      ->setSetting('on_label', 'Yes')
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => FALSE,
+        ],
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'boolean',
+        'label' => 'above',
+        'weight' => 0,
+        'settings' => [
+          'format' => 'enabled-disabled',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
     return $fields;
   }
 
