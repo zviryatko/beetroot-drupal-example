@@ -28,7 +28,16 @@ function beetroot_example_theme($existing, $type, $theme, $path) {
     'example_content' => [
       'render element' => 'elements',
     ],
+    'cats_fact' => [
+      'variables' => ['fact' => NULL],
+    ],
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function beetroot_example_preprocess_cats_fact(&$variables) {
 }
 
 /**

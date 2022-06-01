@@ -12,6 +12,13 @@ example_route_with_form:
   requirements:
     _permission: 'access beetroot example page'
 
+example_route_cache:
+  path: '/example/cache'
+  defaults:
+    _controller: '\Drupal\beetroot_example\Controllers\Example::cacheExample'
+  requirements:
+    _permission: 'access content'
+
 example_settings:
   path: '/admin/config/example'
   defaults:
