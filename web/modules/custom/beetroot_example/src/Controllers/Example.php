@@ -131,45 +131,17 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
 
   public function api(Request $request) {
     $response = new AjaxResponse();
-    $links = array_map(function (NodeTypeInterface $type) {
-      return [
-        '#type' => 'link',
-        '#title' => $this->t('Node add %type', ['%type' => $type->label()]),
-        '#url' => Url::fromRoute('node.add', ['node_type' => $type->id()]),
-        '#attributes' => [
-          'class' => ['use-ajax'],
-          'data-dialog-type' => 'modal',
-          'data-dialog-options' => Json::encode([
-            'width' => 'wide',
-          ]),
-        ],
-      ];
-    }, NodeType::loadMultiple());
-    $links[] = [
-      '#type' => 'link',
-      '#title' => $this->t('Custom form'),
-      '#url' => Url::fromRoute('example_route_with_form'),
-      '#attributes' => [
-        'class' => ['use-ajax'],
-        'data-dialog-type' => 'modal',
-        'data-dialog-options' => Json::encode([
-          'width' => 'wide',
-        ]),
-      ],
-    ];
     $element = [
-      '#theme' => 'item_list',
-      '#items' => $links,
-      '#attributes' => ['id' => Html::getUniqueId('items-list')],
-      '#attached' => [
-        'library' => ['beetroot_example/custom'],
-        'drupalSettings' => [
-          'foo' => 'bar',
+      '#type' => 'container',
+      [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => [
+          'class' => ['custom-react-list'],
         ],
-      ],
+      ]
     ];
     $response->addCommand(new HtmlCommand('#ajax-wrapper', $element));
-    $response->addCommand(new MessageCommand('Test message'));
     return $response;
   }
 
@@ -186,5 +158,19 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
         '#attributes' => ['class' => ['use-ajax']],
       ],
     ];
+  }
+
+  public function latest() {
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $ids = $storage->getQuery()->range(0, 10)->condition('status', 1)->execute();
+    $output = [];
+    $nodes = $storage->loadMultiple($ids);
+    foreach ($nodes as $node) {
+      $output[] = [
+        'title' => $node->label(),
+        'url' => $node->toUrl('canonical')->toString(),
+      ];
+    }
+    return new JsonResponse($output);
   }
 }

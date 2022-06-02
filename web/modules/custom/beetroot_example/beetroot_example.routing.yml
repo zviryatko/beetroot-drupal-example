@@ -86,3 +86,10 @@ example_ajax_lini:
     _controller: '\Drupal\beetroot_example\Controllers\Example::ajaxLink'
   requirements:
     _permission: 'access beetroot example page'
+
+example_route_api_latest:
+  path: '/api/example/latest'
+  defaults:
+    _controller: '\Drupal\beetroot_example\Controllers\Example::latest'
+  requirements:
+    _permission: 'access beetroot example page'

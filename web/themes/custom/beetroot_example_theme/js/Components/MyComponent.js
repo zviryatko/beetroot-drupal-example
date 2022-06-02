@@ -1,15 +1,16 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export function MyComponent() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState({});
+  const listRef = useRef(null);
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch(`${document.location.origin}/example/api`)
+    fetch(`${document.location.origin}/api/example/latest`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -26,11 +27,18 @@ export function MyComponent() {
       )
   }, [])
 
+  useEffect(() => {
+    if (listRef.current) {
+      Drupal.attachBehaviors(listRef.current);
+    }
+  })
+
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return (<div><h2>Drupal version: {data.version}</h2></div>);
+    return (<ul ref={listRef}>{data.map((node) => <li><a className='use-ajax' href={node.url}>{node.title}</a></li>)}<li>
+      <a href="/node/add/article" className='use-ajax' data-dialog-type='modal' >{Drupal.t('Add content')}</a></li></ul>);
   }
 }

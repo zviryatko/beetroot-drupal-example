@@ -1,5 +1,12 @@
 import {MyComponent} from './Components/MyComponent'
 
-const root = ReactDOM.createRoot(document.getElementById('block-exampleblock'));
-root.render(<MyComponent />);
-
+(function ($, Drupal) {
+  Drupal.behaviors.customElement = {
+    attach: function (context, settings) {
+      $('#block-exampleblock, .custom-react-list', context).each(function () {
+        const root = ReactDOM.createRoot($(this)[0]);
+        root.render(<MyComponent/>);
+      });
+    }
+  }
+})(jQuery, Drupal)
