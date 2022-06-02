@@ -6,6 +6,9 @@ package: Custom
 core: 8.x
 core_version_requirement: ^8 || ^9
 
+libraries:
+  - "beetroot_example_theme/global-libraries"
+
 regions:
   navigation: 'Navigation'
   navigation_collapsible: 'Navigation (Collapsible)'

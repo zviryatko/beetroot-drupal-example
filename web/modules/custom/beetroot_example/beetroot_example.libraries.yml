@@ -4,3 +4,5 @@ custom:
   css:
     theme:
       assets/custom.css: {}
+  dependencies:
+    - core/jquery

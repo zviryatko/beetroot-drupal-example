@@ -20,6 +20,8 @@ install: up
 	docker-compose exec -T php bash -c 'drush pmu beetroot_content default_content hal -y'
 cli:
 	docker-compose exec php bash
+node-cli:
+	docker-compose exec node bash
 test:
 	docker-compose exec -T php bash -c 'composer phpcs'
 	docker-compose exec -T php curl 0.0.0.0:80 -H "Host: $(PROJECT_BASE_URL)"

@@ -23,6 +23,7 @@ class ExampleForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['#attached']['library'][] = 'beetroot_example/custom';
     $form['#attributes']['id'] = 'example-form';
     $form['group'] = [
       '#title' => $this->t('Group 1'),

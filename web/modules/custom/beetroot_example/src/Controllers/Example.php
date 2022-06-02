@@ -3,10 +3,20 @@
 namespace Drupal\beetroot_example\Controllers;
 
 use Drupal\beetroot_example\Forms\ExampleForm;
+use Drupal\Component\Serialization\Json;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Ajax\SettingsCommand;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeTypeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -119,4 +129,62 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
     return ['getCurrentTime'];
   }
 
+  public function api(Request $request) {
+    $response = new AjaxResponse();
+    $links = array_map(function (NodeTypeInterface $type) {
+      return [
+        '#type' => 'link',
+        '#title' => $this->t('Node add %type', ['%type' => $type->label()]),
+        '#url' => Url::fromRoute('node.add', ['node_type' => $type->id()]),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'width' => 'wide',
+          ]),
+        ],
+      ];
+    }, NodeType::loadMultiple());
+    $links[] = [
+      '#type' => 'link',
+      '#title' => $this->t('Custom form'),
+      '#url' => Url::fromRoute('example_route_with_form'),
+      '#attributes' => [
+        'class' => ['use-ajax'],
+        'data-dialog-type' => 'modal',
+        'data-dialog-options' => Json::encode([
+          'width' => 'wide',
+        ]),
+      ],
+    ];
+    $element = [
+      '#theme' => 'item_list',
+      '#items' => $links,
+      '#attributes' => ['id' => Html::getUniqueId('items-list')],
+      '#attached' => [
+        'library' => ['beetroot_example/custom'],
+        'drupalSettings' => [
+          'foo' => 'bar',
+        ],
+      ],
+    ];
+    $response->addCommand(new HtmlCommand('#ajax-wrapper', $element));
+    $response->addCommand(new MessageCommand('Test message'));
+    return $response;
+  }
+
+  public function ajaxLink() {
+    return [
+      [
+        '#theme' => 'container',
+        '#attributes' => ['id' => 'ajax-wrapper'],
+      ],
+      [
+        '#type' => 'link',
+        '#title' => $this->t('Ajax link'),
+        '#url' => Url::fromRoute('example_route_api'),
+        '#attributes' => ['class' => ['use-ajax']],
+      ],
+    ];
+  }
 }
