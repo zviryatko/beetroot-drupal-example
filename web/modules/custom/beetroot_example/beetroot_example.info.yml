@@ -3,3 +3,6 @@ type: module
 package: Custom
 core_version_requirement: ^9
 configure: entity.beetroot_example.collection
+
+dependencies:
+  - hook_event_dispatcher:core_event_dispatcher
