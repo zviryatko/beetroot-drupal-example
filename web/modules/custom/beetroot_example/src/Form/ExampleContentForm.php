@@ -26,17 +26,24 @@ class ExampleContentForm extends ContentEntityForm {
 
     switch ($result) {
       case SAVED_NEW:
-        $this->messenger()->addStatus($this->t('New example content %label has been created.', $message_arguments));
-        $this->logger('beetroot_example')->notice('Created new example content %label', $logger_arguments);
+        $this->messenger()
+          ->addStatus($this->t('New example content %label has been created.',
+            $message_arguments));
+        $this->logger('beetroot_example')
+          ->notice('Created new example content %label', $logger_arguments);
         break;
 
       case SAVED_UPDATED:
-        $this->messenger()->addStatus($this->t('The example content %label has been updated.', $message_arguments));
-        $this->logger('beetroot_example')->notice('Updated example content %label.', $logger_arguments);
+        $this->messenger()
+          ->addStatus($this->t('The example content %label has been updated.',
+            $message_arguments));
+        $this->logger('beetroot_example')
+          ->notice('Updated example content %label.', $logger_arguments);
         break;
     }
 
-    $form_state->setRedirect('entity.example_content.canonical', ['example_content' => $entity->id()]);
+    $form_state->setRedirect('entity.example_content.canonical',
+      ['example_content' => $entity->id()]);
 
     return $result;
   }

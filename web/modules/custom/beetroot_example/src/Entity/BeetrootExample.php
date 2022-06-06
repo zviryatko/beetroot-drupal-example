@@ -32,7 +32,8 @@ use Drupal\beetroot_example\BeetrootExampleInterface;
  *     "collection" = "/admin/structure/beetroot-example",
  *     "add-form" = "/admin/structure/beetroot-example/add",
  *     "edit-form" = "/admin/structure/beetroot-example/{beetroot_example}",
- *     "delete-form" = "/admin/structure/beetroot-example/{beetroot_example}/delete"
+ *     "delete-form" =
+ *   "/admin/structure/beetroot-example/{beetroot_example}/delete"
  *   },
  *   entity_keys = {
  *     "id" = "id",
@@ -70,12 +71,23 @@ class BeetrootExample extends ConfigEntityBase implements BeetrootExampleInterfa
    */
   protected $type;
 
+  /**
+   * List of plugins.
+   *
+   * @var array
+   */
   protected $plugins;
 
+  /**
+   * {@inheritDoc}
+   */
   public function getPlugins(): array {
     return array_filter($this->plugins);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function getType(): string {
     return $this->type;
   }

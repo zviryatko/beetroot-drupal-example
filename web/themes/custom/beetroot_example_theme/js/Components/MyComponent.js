@@ -10,12 +10,12 @@ export function MyComponent() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch(`${document.location.origin}/api/example/latest`)
+    fetch(`${document.location.origin}/jsonapi/node/article?include=field_tags&page[limit]=10`)
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setData(result);
+          setData(result.data);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -38,7 +38,7 @@ export function MyComponent() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return (<ul ref={listRef}>{data.map((node) => <li><a className='use-ajax' href={node.url}>{node.title}</a></li>)}<li>
+    return (<ul ref={listRef}>{data.map((node) => <li><a className='use-ajax' href={`/node/${node.drupal_internal__nid}`}>{node.title}</a>{node.tags.name !== undefined ? ` - ${node.tags.name}` : ''}</li>)}<li>
       <a href="/node/add/article" className='use-ajax' data-dialog-type='modal' >{Drupal.t('Add content')}</a></li></ul>);
   }
 }

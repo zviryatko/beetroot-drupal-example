@@ -29,7 +29,9 @@ class TextCleanupSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $options = [];
-    /** @var \Drupal\beetroot_example\TextCleanupPluginManager $manager */
+    /**
+     * @var \Drupal\beetroot_example\TextCleanupPluginManager $manager
+     */
     $manager = \Drupal::service('plugin.manager.text_cleanup');
     foreach ($manager->getDefinitions() as $pluginId => $pluginDefinition) {
       $options[$pluginId] = $pluginDefinition['label'];
@@ -37,7 +39,8 @@ class TextCleanupSettingsForm extends ConfigFormBase {
     $form['plugins'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Plugins'),
-      '#default_value' => $this->config('beetroot_example.text_cleanup.settings')->get('plugins'),
+      '#default_value' => $this->config('beetroot_example.text_cleanup.settings')
+        ->get('plugins'),
       '#options' => $options,
     ];
     return parent::buildForm($form, $form_state);

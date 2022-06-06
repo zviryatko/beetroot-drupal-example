@@ -25,7 +25,9 @@ class BeetrootExampleListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\beetroot_example\BeetrootExampleInterface $entity */
+    /**
+     * @var \Drupal\beetroot_example\BeetrootExampleInterface $entity
+     */
     $row['label'] = $entity->label();
     $row['id'] = $entity->id();
     $row['type'] = $entity->getType();

@@ -1,0 +1,18 @@
+uuid: f966f353-6ec6-45a1-981a-6b915b1154a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - beetroot_example
+    - serialization
+    - user
+id: beetroot_example_nodes_list
+plugin_id: beetroot_example_nodes_list
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

@@ -9,7 +9,14 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  */
 interface BeetrootExampleInterface extends ConfigEntityInterface {
 
+  /**
+   * Get type.
+   */
   public function getType(): string;
 
+  /**
+   * Get plugins list.
+   */
   public function getPlugins(): array;
+
 }

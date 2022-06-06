@@ -31,7 +31,11 @@ class ExampleContentListBuilder extends EntityListBuilder {
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    EntityTypeInterface $entity_type,
+    EntityStorageInterface $storage,
+    DateFormatterInterface $date_formatter
+  ) {
     parent::__construct($entity_type, $storage);
     $this->dateFormatter = $date_formatter;
   }
@@ -39,7 +43,10 @@ class ExampleContentListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
+  public static function createInstance(
+    ContainerInterface $container,
+    EntityTypeInterface $entity_type
+  ) {
     return new static(
       $entity_type,
       $container->get('entity_type.manager')->getStorage($entity_type->id()),
@@ -59,7 +66,8 @@ class ExampleContentListBuilder extends EntityListBuilder {
       ->count()
       ->execute();
 
-    $build['summary']['#markup'] = $this->t('Total example contents: @total', ['@total' => $total]);
+    $build['summary']['#markup'] = $this->t('Total example contents: @total',
+      ['@total' => $total]);
     return $build;
   }
 
@@ -80,7 +88,9 @@ class ExampleContentListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\beetroot_example\ExampleContentInterface $entity */
+    /**
+     * @var \Drupal\beetroot_example\ExampleContentInterface $entity
+     */
     $row['id'] = $entity->id();
     $row['label'] = $entity->toLink();
     $row['status'] = $entity->get('status')->value ? $this->t('Enabled') : $this->t('Disabled');

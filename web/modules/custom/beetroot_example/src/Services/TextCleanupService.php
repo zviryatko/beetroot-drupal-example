@@ -57,21 +57,30 @@ class TextCleanupService {
     $enabledPlugins = $this->config->get('beetroot_example.text_cleanup.settings')
       ->get('plugins');
     foreach (array_filter($enabledPlugins) as $pluginId) {
-      /** @var \Drupal\beetroot_example\TextCleanupInterface $plugin */
-      $plugin = $this->manager->createInstance($pluginId,
-        $pluginDefinitions[$pluginId]);
+      /**
+       * @var \Drupal\beetroot_example\TextCleanupInterface $plugin
+       */
+      $plugin = $this->manager->createInstance(
+        $pluginId,
+        $pluginDefinitions[$pluginId]
+      );
       $text = $plugin->cleanUp($text);
     }
     return $text;
   }
 
+  /**
+   * Clean up entity.
+   */
   public function cleanUpEntity(FieldableEntityInterface $entity) {
     $storage = \Drupal::entityTypeManager()->getStorage('beetroot_example');
     $configs = $storage->loadByProperties(['type' => $entity->bundle()]);
     if (empty($configs)) {
       return;
     }
-    /** @var \Drupal\beetroot_example\BeetrootExampleInterface $config */
+    /**
+     * @var \Drupal\beetroot_example\BeetrootExampleInterface $config
+     */
     $config = reset($configs);
     $plugins = $config->getPlugins();
 
@@ -80,12 +89,16 @@ class TextCleanupService {
       if ($field->getFieldDefinition()->getType() === 'text_long') {
         $value = $entity->get($field->getName())->value;
         foreach (array_filter($plugins) as $pluginId) {
-          /** @var \Drupal\beetroot_example\TextCleanupInterface $plugin */
-          $plugin = $this->manager->createInstance($pluginId, $pluginDefinitions[$pluginId]);
+          /**
+           * @var \Drupal\beetroot_example\TextCleanupInterface $plugin
+           */
+          $plugin = $this->manager->createInstance($pluginId,
+            $pluginDefinitions[$pluginId]);
           $value = $plugin->cleanUp($value);
         }
         $entity->set($field->getName(), $value);
       }
     }
   }
+
 }

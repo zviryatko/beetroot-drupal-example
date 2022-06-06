@@ -4,10 +4,8 @@ namespace Drupal\beetroot_example\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\node\Entity\Node;
 
 /**
  * Provides example of block plugin.
@@ -30,7 +28,10 @@ class ExampleBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+  public function buildConfigurationForm(
+    array $form,
+    FormStateInterface $form_state
+  ) {
     $form['some_config'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Some config'),
@@ -44,7 +45,10 @@ class ExampleBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+  public function submitConfigurationForm(
+    array &$form,
+    FormStateInterface $form_state
+  ) {
     $this->configuration['some_config'] = $form_state->getValue('some_config');
     parent::submitConfigurationForm($form, $form_state);
   }
@@ -54,7 +58,9 @@ class ExampleBlock extends BlockBase {
    */
   public function build() {
     \Drupal::request()->query->get('flag');
-    /** @var \Drupal\Core\Path\PathMatcherInterface $path_matcher */
+    /**
+     * @var \Drupal\Core\Path\PathMatcherInterface $path_matcher
+     */
     $path_matcher = \Drupal::service('path.matcher');
     $type = $path_matcher->isFrontPage() ? 'page' : 'article';
     $storage = \Drupal::entityTypeManager()->getStorage('node');
@@ -68,16 +74,25 @@ class ExampleBlock extends BlockBase {
     return ['#markup' => $node->label()];
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function getCacheContexts() {
     return [
       'url.path.is_front',
     ];
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function getCacheTags() {
     return ['node_list'];
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function getCacheMaxAge() {
     return 60 * 60 * 24;
   }

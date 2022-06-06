@@ -19,7 +19,8 @@ class ExampleContentTypeForm extends BundleEntityFormBase {
 
     $entity_type = $this->entity;
     if ($this->operation == 'edit') {
-      $form['#title'] = $this->t('Edit %label example content type', ['%label' => $entity_type->label()]);
+      $form['#title'] = $this->t('Edit %label example content type',
+        ['%label' => $entity_type->label()]);
     }
 
     $form['label'] = [
@@ -36,7 +37,10 @@ class ExampleContentTypeForm extends BundleEntityFormBase {
       '#default_value' => $entity_type->id(),
       '#maxlength' => EntityTypeInterface::BUNDLE_MAX_LENGTH,
       '#machine_name' => [
-        'exists' => ['Drupal\beetroot_example\Entity\ExampleContentType', 'load'],
+        'exists' => [
+          'Drupal\beetroot_example\Entity\ExampleContentType',
+          'load',
+        ],
         'source' => ['label'],
       ],
       '#description' => $this->t('A unique machine-readable name for this example content type. It must only contain lowercase letters, numbers, and underscores.'),
@@ -68,10 +72,12 @@ class ExampleContentTypeForm extends BundleEntityFormBase {
 
     $t_args = ['%name' => $entity_type->label()];
     if ($status == SAVED_UPDATED) {
-      $message = $this->t('The example content type %name has been updated.', $t_args);
+      $message = $this->t('The example content type %name has been updated.',
+        $t_args);
     }
     elseif ($status == SAVED_NEW) {
-      $message = $this->t('The example content type %name has been added.', $t_args);
+      $message = $this->t('The example content type %name has been added.',
+        $t_args);
     }
     $this->messenger()->addStatus($message);
 

@@ -189,3 +189,5 @@ parameters:
     maxAge: false
     # Sets the Access-Control-Allow-Credentials header.
     supportsCredentials: false
+
+  prod_api_token: '12345'

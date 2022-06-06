@@ -15,6 +15,7 @@ module:
   contact: 0
   context: 0
   context_ui: 0
+  core_event_dispatcher: 0
   ctools: 0
   datetime: 0
   dblog: 0
@@ -30,6 +31,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  hook_event_dispatcher: 0
   image: 0
   inline_entity_form: 0
   inline_form_errors: 0
@@ -39,6 +41,9 @@ module:
   jquery_ui_droppable: 0
   jquery_ui_slider: 0
   jquery_ui_touch_punch: 0
+  jsonapi: 0
+  jsonapi_extras: 0
+  jsonapi_include: 0
   language: 0
   layout_discovery: 0
   link: 0
@@ -55,6 +60,7 @@ module:
   rdf: 0
   responsive_image: 0
   rest: 0
+  restui: 0
   serialization: 0
   shortcut: 0
   system: 0

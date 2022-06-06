@@ -23,7 +23,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *       "edit" = "Drupal\beetroot_example\Form\ExampleContentTypeForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
  *     },
- *     "list_builder" = "Drupal\beetroot_example\ExampleContentTypeListBuilder",
+ *     "list_builder" =
+ *   "Drupal\beetroot_example\ExampleContentTypeListBuilder",
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     }
@@ -38,8 +39,10 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   },
  *   links = {
  *     "add-form" = "/admin/structure/example_content_types/add",
- *     "edit-form" = "/admin/structure/example_content_types/manage/{example_content_type}",
- *     "delete-form" = "/admin/structure/example_content_types/manage/{example_content_type}/delete",
+ *     "edit-form" =
+ *   "/admin/structure/example_content_types/manage/{example_content_type}",
+ *     "delete-form" =
+ *   "/admin/structure/example_content_types/manage/{example_content_type}/delete",
  *     "collection" = "/admin/structure/example_content_types"
  *   },
  *   config_export = {

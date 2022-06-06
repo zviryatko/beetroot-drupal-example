@@ -15,11 +15,16 @@ class ExampleContentAccessControlHandler extends EntityAccessControlHandler {
   /**
    * {@inheritdoc}
    */
-  protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+  protected function checkAccess(
+    EntityInterface $entity,
+    $operation,
+    AccountInterface $account
+  ) {
 
     switch ($operation) {
       case 'view':
-        return AccessResult::allowedIfHasPermission($account, 'view example content');
+        return AccessResult::allowedIfHasPermission($account,
+          'view example content');
 
       case 'update':
         return AccessResult::allowedIfHasPermissions(
@@ -45,7 +50,11 @@ class ExampleContentAccessControlHandler extends EntityAccessControlHandler {
   /**
    * {@inheritdoc}
    */
-  protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
+  protected function checkCreateAccess(
+    AccountInterface $account,
+    array $context,
+    $entity_bundle = NULL
+  ) {
     return AccessResult::allowedIfHasPermissions(
       $account,
       ['create example content', 'administer example content'],

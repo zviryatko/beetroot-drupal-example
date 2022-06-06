@@ -114,8 +114,10 @@ class ExampleForm extends FormBase {
     // Validation is optional.
     $text = $form_state->getValue('text');
     if (strlen($text) < 100) {
-      $form_state->setErrorByName('text',
-        $this->t('Text must be more than 100 chars.'));
+      $form_state->setErrorByName(
+        'text',
+        $this->t('Text must be more than 100 chars.')
+      );
     }
   }
 
@@ -133,14 +135,22 @@ class ExampleForm extends FormBase {
     foreach (range(1, $number) as $i) {
       $arg1 = $params;
       $arg1['title'] .= ' - ' . $i;
-      $operations[] = ['\Drupal\beetroot_example\Forms\ExampleForm::createNode', [$arg1]];
+      $operations[] = [
+        '\Drupal\beetroot_example\Forms\ExampleForm::createNode',
+        [$arg1],
+      ];
     }
-    batch_set([
-      'title' => $this->t('Node creation'),
-      'operations' => $operations,
-    ]);
+    batch_set(
+      [
+        'title' => $this->t('Node creation'),
+        'operations' => $operations,
+      ]
+    );
   }
 
+  /**
+   * Creates a node operation.
+   */
   public static function createNode(array $params) {
     $node = Node::create($params);
     $node->save();

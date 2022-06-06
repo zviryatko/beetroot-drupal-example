@@ -43,7 +43,9 @@ function beetroot_example_preprocess_cats_fact(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK().
  */
-function beetroot_example_theme_suggestions_beetroot_example_news(array $variables) {
+function beetroot_example_theme_suggestions_beetroot_example_news(
+  array $variables
+) {
   $suggestions = [];
   $suggestions[] = 'beetroot_example_news__' . $variables['type'];
   return $suggestions;
@@ -76,8 +78,8 @@ function beetroot_example_entity_presave(EntityInterface $entity) {
  *
  * @param array $variables
  *   An associative array containing:
- *   - elements: An associative array containing the example content information and any
- *     fields attached to the entity.
+ *   - elements: An associative array containing the example content
+ *   information and any fields attached to the entity.
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_example_content(array &$variables) {
@@ -143,7 +145,9 @@ function beetroot_example_user_predelete(UserInterface $account) {
 /**
  * Implements hook_entity_insert().
  */
-function beetroot_example_entity_insert(\Drupal\Core\Entity\EntityInterface $entity) {
+function beetroot_example_entity_insert(
+  \Drupal\Core\Entity\EntityInterface $entity
+) {
   if ($entity instanceof NodeInterface) {
     \Drupal::queue('admin_notify_worker')->createItem($entity->id());
   }

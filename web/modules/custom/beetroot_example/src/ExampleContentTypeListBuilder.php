@@ -42,7 +42,10 @@ class ExampleContentTypeListBuilder extends ConfigEntityListBuilder {
 
     $build['table']['#empty'] = $this->t(
       'No example content types available. <a href=":link">Add example content type</a>.',
-      [':link' => Url::fromRoute('entity.example_content_type.add_form')->toString()]
+      [
+        ':link' => Url::fromRoute('entity.example_content_type.add_form')
+          ->toString(),
+      ]
     );
 
     return $build;

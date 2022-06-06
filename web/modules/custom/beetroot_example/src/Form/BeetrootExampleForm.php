@@ -45,7 +45,9 @@ class BeetrootExampleForm extends EntityForm {
     ];
 
     $options = [];
-    /** @var \Drupal\beetroot_example\TextCleanupPluginManager $manager */
+    /**
+     * @var \Drupal\beetroot_example\TextCleanupPluginManager $manager
+     */
     $manager = \Drupal::service('plugin.manager.text_cleanup');
     foreach ($manager->getDefinitions() as $pluginId => $pluginDefinition) {
       $options[$pluginId] = $pluginDefinition['label'];

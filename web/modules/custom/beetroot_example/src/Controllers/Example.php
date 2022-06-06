@@ -3,20 +3,13 @@
 namespace Drupal\beetroot_example\Controllers;
 
 use Drupal\beetroot_example\Forms\ExampleForm;
-use Drupal\Component\Serialization\Json;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\Core\Ajax\MessageCommand;
-use Drupal\Core\Ajax\RedirectCommand;
-use Drupal\Core\Ajax\SettingsCommand;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
-use Drupal\node\Entity\NodeType;
-use Drupal\node\NodeTypeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,7 +32,9 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
       $i++;
       $links = [];
       if ($node->hasField('field_related_news')) {
-        /** @var \Drupal\node\NodeInterface[] $related */
+        /**
+         * @var \Drupal\node\NodeInterface[] $related
+         */
         $related = $node->get('field_related_news')->referencedEntities();
         foreach ($related as $item) {
           $links[] = [
@@ -104,18 +99,36 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
     return new JsonResponse($results);
   }
 
+  /**
+   * Example of cached response.
+   */
   public function cacheExample() {
-    $response = \Drupal::httpClient()->request('GET', 'https://catfact.ninja/fact');
+    $response = \Drupal::httpClient()
+      ->request('GET', 'https://catfact.ninja/fact');
     if ($response->getStatusCode() !== 200) {
       return [];
     }
     $fact = json_decode($response->getBody());
-    return       [
-      '#lazy_builder' => [static::class . '::getCurrentTime', []],
-      '#create_placeholder' => TRUE,
+    return [
+      [
+        '#lazy_builder' => [static::class . '::getCurrentTime', []],
+        '#create_placeholder' => TRUE,
+      ],
+      [
+        '#markup' => $fact->fact,
+        '#cache' => [
+          'max-age' => -1,
+        ],
+      ],
+      '#cache' => [
+        'max-age' => -1,
+      ],
     ];
   }
 
+  /**
+   * Example of lazy builder callback.
+   */
   public static function getCurrentTime() {
     return [
       '#markup' => \Drupal::time()->getCurrentTime(),
@@ -125,10 +138,16 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
     ];
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public static function trustedCallbacks() {
     return ['getCurrentTime'];
   }
 
+  /**
+   * Example of ajax response.
+   */
   public function api(Request $request) {
     $response = new AjaxResponse();
     $element = [
@@ -139,12 +158,15 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
         '#attributes' => [
           'class' => ['custom-react-list'],
         ],
-      ]
+      ],
     ];
     $response->addCommand(new HtmlCommand('#ajax-wrapper', $element));
     return $response;
   }
 
+  /**
+   * Example of ajax link.
+   */
   public function ajaxLink() {
     return [
       [
@@ -160,9 +182,15 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
     ];
   }
 
+  /**
+   * Show 10 latest nodes.
+   */
   public function latest() {
     $storage = \Drupal::entityTypeManager()->getStorage('node');
-    $ids = $storage->getQuery()->range(0, 10)->condition('status', 1)->execute();
+    $ids = $storage->getQuery()
+      ->range(0, 10)
+      ->condition('status', 1)
+      ->execute();
     $output = [];
     $nodes = $storage->loadMultiple($ids);
     foreach ($nodes as $node) {
@@ -173,4 +201,5 @@ class Example extends ControllerBase implements TrustedCallbackInterface {
     }
     return new JsonResponse($output);
   }
+
 }
