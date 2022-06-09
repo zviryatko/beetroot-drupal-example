@@ -1,3 +1,6 @@
+parameters:
+  prod_api_token: ''
+
 services:
   beetroot_example_text_cleanup:
     class: Drupal\beetroot_example\Services\TextCleanupService

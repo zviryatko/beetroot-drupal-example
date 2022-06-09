@@ -4,6 +4,7 @@ namespace Drupal\beetroot_example\Services;
 
 use Drupal\beetroot_example\TextCleanupPluginManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 
 /**
@@ -26,6 +27,11 @@ class TextCleanupService {
   private ConfigFactoryInterface $config;
 
   /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  private EntityTypeManagerInterface $entityTypeManager;
+
+  /**
    * Creates text cleanup service.
    *
    * @param \Drupal\beetroot_example\TextCleanupPluginManager $manager
@@ -35,10 +41,12 @@ class TextCleanupService {
    */
   public function __construct(
     TextCleanupPluginManager $manager,
-    ConfigFactoryInterface $config
+    ConfigFactoryInterface $config,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
     $this->manager = $manager;
     $this->config = $config;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
@@ -73,7 +81,7 @@ class TextCleanupService {
    * Clean up entity.
    */
   public function cleanUpEntity(FieldableEntityInterface $entity) {
-    $storage = \Drupal::entityTypeManager()->getStorage('beetroot_example');
+    $storage = $this->entityTypeManager->getStorage('beetroot_example');
     $configs = $storage->loadByProperties(['type' => $entity->bundle()]);
     if (empty($configs)) {
       return;

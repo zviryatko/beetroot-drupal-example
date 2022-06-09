@@ -5,7 +5,7 @@ beetroot_example.settings:
     enabled:
       type: boolean
       label: 'Enabled'
-    imporant_number:
+    important_number:
       type: integer
       label: 'Some important number'
     important_text:
